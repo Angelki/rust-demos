@@ -1,0 +1,2 @@
+# rust-demos
+learn rust
