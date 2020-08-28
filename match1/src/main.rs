@@ -1,5 +1,5 @@
 enum Coin {
-    Penny,
+    Penny(i32),
     Nickel,
     Dime,
     Quarter,
@@ -7,8 +7,8 @@ enum Coin {
 
 fn value_in_cents(coin: Coin) -> u32 {
     match coin {
-        Coin::Penny => {
-            println!("Lucy Penny");
+        Coin::Penny(count) => {
+            println!("Lucy Penny: {}", count);
             1
         }
         Coin::Nickel => 5,
@@ -18,6 +18,6 @@ fn value_in_cents(coin: Coin) -> u32 {
 }
 
 fn main() {
-    let value: Coin = 3;
+    let value = Coin::Penny(3);
     value_in_cents(value);
 }
