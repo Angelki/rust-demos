@@ -9,7 +9,12 @@ fn main() {
 }
 // 定义一个trait 类似于interface 公有的
 pub trait Summarizable {
-    fn summary(&self) -> String;
+    // 申明
+    fn author_summary(&self) -> String;
+    // summary已经实现了
+    fn summary(&self) -> String {
+        format!("(Read more from {}...)", self.author_summary())
+    }
 }
 
 pub struct NewsArticle {
@@ -19,11 +24,11 @@ pub struct NewsArticle {
     pub content: String,
 }
 
-impl Summarizable for NewsArticle {
-    fn summary(&self) -> String {
-        format!("{}, by {} ({})", self.headline, self.author, self.location)
-    }
-}
+// impl Summarizable for NewsArticle {
+//     fn summary(&self) -> String {
+//         format!("{}, by {} ({})", self.headline, self.author, self.location)
+//     }
+// }
 
 pub struct Tweet {
     pub username: String,
@@ -33,7 +38,7 @@ pub struct Tweet {
 }
 
 impl Summarizable for Tweet {
-    fn summary(&self) -> String {
-        format!("{}: {}", self.username, self.content)
+    fn author_summary(&self) -> String {
+        format!("@{}", self.username)
     }
 }
